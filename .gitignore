@@ -1,0 +1,39 @@
+*.filters
+*.user
+*.vsidx
+*.ipch
+*.suo
+*.db
+*.lastbuildstate
+*.tlog
+*.aps
+
+# Игнорирование временных файлов и кэшей
+*.o
+*.obj
+*.exe
+*.dll
+*.lib
+*.so
+*.out
+*.class
+*.pyc
+*.pyo
+
+# Игнорирование временных файлов редакторов и IDE
+*.vscode/
+.idea/
+*.user
+*.log
+*.tmp
+*.swp
+
+# Исключение файлов сборки
+build/
+bin/
+*.makefile
+Makefile
+
+# Исключение временных файлов систем
+.DS_Store
+Thumbs.db

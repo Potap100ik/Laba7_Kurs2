@@ -1,0 +1,129 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A84CFA37-DF66-42F7-B638-5837A8F816FA}|LR7_LastOne\\LR7_LastOne.csproj|D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\lr7_lastone\\device_hierarchy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A84CFA37-DF66-42F7-B638-5837A8F816FA}|LR7_LastOne\\LR7_LastOne.csproj|solutionrelative:lr7_lastone\\device_hierarchy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A84CFA37-DF66-42F7-B638-5837A8F816FA}|LR7_LastOne\\LR7_LastOne.csproj|D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\lr7_lastone\\sourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A84CFA37-DF66-42F7-B638-5837A8F816FA}|LR7_LastOne\\LR7_LastOne.csproj|solutionrelative:lr7_lastone\\sourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A84CFA37-DF66-42F7-B638-5837A8F816FA}|LR7_LastOne\\LR7_LastOne.csproj|d:\\\u0431\u044D\u043A\u0430\u043F\\\u043A\u043E\u043F\u043C\u044C\u044E\u0442\u0435\u0440\\\u043C\u0430\u0438\\\u043C\u044D\u0438_\u043C\u043E\u0439\\2_\u043A\u0443\u0440\u0441\\1._\u043F\u0440\u043E\u0433\u0430\\7\\lr7_lastone\\lr7_lastone\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A84CFA37-DF66-42F7-B638-5837A8F816FA}|LR7_LastOne\\LR7_LastOne.csproj|solutionrelative:lr7_lastone\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A84CFA37-DF66-42F7-B638-5837A8F816FA}|LR7_LastOne\\LR7_LastOne.csproj|d:\\\u0431\u044D\u043A\u0430\u043F\\\u043A\u043E\u043F\u043C\u044C\u044E\u0442\u0435\u0440\\\u043C\u0430\u0438\\\u043C\u044D\u0438_\u043C\u043E\u0439\\2_\u043A\u0443\u0440\u0441\\1._\u043F\u0440\u043E\u0433\u0430\\7\\lr7_lastone\\lr7_lastone\\mainform_f.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A84CFA37-DF66-42F7-B638-5837A8F816FA}|LR7_LastOne\\LR7_LastOne.csproj|solutionrelative:lr7_lastone\\mainform_f.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A84CFA37-DF66-42F7-B638-5837A8F816FA}|LR7_LastOne\\LR7_LastOne.csproj|D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\lr7_lastone\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A84CFA37-DF66-42F7-B638-5837A8F816FA}|LR7_LastOne\\LR7_LastOne.csproj|solutionrelative:lr7_lastone\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Device_hierarchy.cs",
+              "DocumentMoniker": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\LR7_LastOne\\Device_hierarchy.cs",
+              "RelativeDocumentMoniker": "LR7_LastOne\\Device_hierarchy.cs",
+              "ToolTip": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\LR7_LastOne\\Device_hierarchy.cs",
+              "RelativeToolTip": "LR7_LastOne\\Device_hierarchy.cs",
+              "ViewState": "AQIAAFkAAAAAAAAAAAAkwHIAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T13:40:47.957Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Sourse.cs",
+              "DocumentMoniker": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\LR7_LastOne\\Sourse.cs",
+              "RelativeDocumentMoniker": "LR7_LastOne\\Sourse.cs",
+              "ToolTip": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\LR7_LastOne\\Sourse.cs",
+              "RelativeToolTip": "LR7_LastOne\\Sourse.cs",
+              "ViewState": "AQIAAGMAAAAAAAAAAAAowJUAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T01:24:48.099Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\LR7_LastOne\\MainForm.cs",
+              "RelativeDocumentMoniker": "LR7_LastOne\\MainForm.cs",
+              "ToolTip": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\LR7_LastOne\\MainForm.cs",
+              "RelativeToolTip": "LR7_LastOne\\MainForm.cs",
+              "ViewState": "AQIAAEEAAAAAAAAAAAAewH4AAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T16:25:44.87Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainForm_F.cs",
+              "DocumentMoniker": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\LR7_LastOne\\MainForm_F.cs",
+              "RelativeDocumentMoniker": "LR7_LastOne\\MainForm_F.cs",
+              "ToolTip": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\LR7_LastOne\\MainForm_F.cs",
+              "RelativeToolTip": "LR7_LastOne\\MainForm_F.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T18:54:57.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{2d7728c2-de0a-45b5-99aa-89b609dfde73}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{dcc4ea97-1c0c-482b-b205-e541c0df9728}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\LR7_LastOne\\MainForm.cs",
+              "RelativeDocumentMoniker": "LR7_LastOne\\MainForm.cs",
+              "ToolTip": "D:\\\u0411\u042D\u041A\u0410\u041F\\\u041A\u041E\u041F\u041C\u042C\u042E\u0422\u0415\u0420\\\u041C\u0410\u0418\\\u041C\u042D\u0418_\u043C\u043E\u0439\\2_\u041A\u0443\u0440\u0441\\1._\u041F\u0440\u043E\u0433\u0430\\7\\LR7_LastOne\\LR7_LastOne\\MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "LR7_LastOne\\MainForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T01:29:04.876Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 993,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

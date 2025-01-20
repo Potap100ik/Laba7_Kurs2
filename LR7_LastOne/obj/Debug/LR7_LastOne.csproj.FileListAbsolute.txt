@@ -1,0 +1,9 @@
+D:\БЭКАП\КОПМЬЮТЕР\МАИ\МЭИ_мой\2_Курс\1._Прога\7\LR7_LastOne\LR7_LastOne\bin\Debug\LR7_LastOne.exe.config
+D:\БЭКАП\КОПМЬЮТЕР\МАИ\МЭИ_мой\2_Курс\1._Прога\7\LR7_LastOne\LR7_LastOne\bin\Debug\LR7_LastOne.exe
+D:\БЭКАП\КОПМЬЮТЕР\МАИ\МЭИ_мой\2_Курс\1._Прога\7\LR7_LastOne\LR7_LastOne\bin\Debug\LR7_LastOne.pdb
+D:\БЭКАП\КОПМЬЮТЕР\МАИ\МЭИ_мой\2_Курс\1._Прога\7\LR7_LastOne\LR7_LastOne\obj\Debug\LR7_LastOne.csproj.AssemblyReference.cache
+D:\БЭКАП\КОПМЬЮТЕР\МАИ\МЭИ_мой\2_Курс\1._Прога\7\LR7_LastOne\LR7_LastOne\obj\Debug\LR7_LastOne.csproj.CoreCompileInputs.cache
+D:\БЭКАП\КОПМЬЮТЕР\МАИ\МЭИ_мой\2_Курс\1._Прога\7\LR7_LastOne\LR7_LastOne\obj\Debug\LR7_LastOne.exe
+D:\БЭКАП\КОПМЬЮТЕР\МАИ\МЭИ_мой\2_Курс\1._Прога\7\LR7_LastOne\LR7_LastOne\obj\Debug\LR7_LastOne.pdb
+D:\БЭКАП\КОПМЬЮТЕР\МАИ\МЭИ_мой\2_Курс\1._Прога\7\LR7_LastOne\LR7_LastOne\obj\Debug\LR7_LastOne.csproj.GenerateResource.cache
+D:\БЭКАП\КОПМЬЮТЕР\МАИ\МЭИ_мой\2_Курс\1._Прога\7\LR7_LastOne\LR7_LastOne\obj\Debug\LR7_LastOne.MainForm.resources
