@@ -4,15 +4,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static LR7_LastOne.Device_interface;
 
 namespace LR7_LastOne
 {
-   class FileReader
+    class FileReader
     {
-        public static Device[] GetDevices(DeviceHandler notify, string path = "data.txt")
+        public static Device[] GetDevices(Device_interface.HandleDeviceEvents notify, string path = "data.txt")
         {
-
+            
             if (!File.Exists(path))
             {
                 throw new FileNotFoundException($"File {path} doesn't exists");
@@ -32,29 +33,30 @@ namespace LR7_LastOne
                     {
                         if (line[0] == Device.GetClass())
                         {
-                            result_file[j] = new Device(price, manufacturer);
+                            result_file[j] = new Device(price, manufacturer, notify);
                         }
                         else if (line[0] == Printer.GetClass())
                         {
-                            result_file[j] = new Printer(price, manufacturer);
+                            result_file[j] = new Printer(price, manufacturer, notify);
                         }
                         else if (line[0] == Scanner.GetClass())
                         {
-                            result_file[j] = new Scanner(price, manufacturer);
+                            result_file[j] = new Scanner(price, manufacturer, notify);
                         }
                         else if (line[0] == MFP.GetClass())
                         {
-                            result_file[j] = new MFP(price, manufacturer);
+                            result_file[j] = new MFP(price, manufacturer, notify);
                         }
                         else
                         {
-                            notify($"Неверный формат строки: {lines[i]}");
+                            notify.ThrowMassage(($"Неверный формат строки: {lines[i]}"));
                         }
                     }
                     catch (ArgumentException ex)
                     {
                         result_file[j] = null;
                         Console.WriteLine();
+                        notify.ThrowMassage(ex.Message);
                     }
                 }
                 if (result_file[j] == null) --j;
@@ -70,106 +72,22 @@ namespace LR7_LastOne
         }
 
     }
-    static class HandleDeviceEvents
-    {
-        public static void GUI(string msg)
-        {
-            Console.WriteLine(msg);
-        }
-        public static Device_interface.DeviceStringBuilder GetHandleAll()
-        {
-            // Device_interface.DeviceStringBuilder result = HandleAll;
-            return HandleAll;
-        }
-        public static string HandleAll(Device_interface device, DeviceEventArgs e)//для 
-        {
-            switch (e.property)
-            {
-                case null:
-                    break;
-                case DeviceEventArgs.PropertyType.Assemble_changed:
-                    {
-                        return $"Assemble changed of {device.ToString()}";
-                    }
-                case DeviceEventArgs.PropertyType.Plug_changed:
-                    {
-                        return $"Plug changed of {device.ToString()}";
-                    }
-                case DeviceEventArgs.PropertyType.Copying:
-                    {
-                        return $"{device.ToString()} is copying";
-                    }
-                case DeviceEventArgs.PropertyType.Printing:
-                    {
-                        return $"{device.ToString()} is printing";
-                    }
-                case DeviceEventArgs.PropertyType.Scanning:
-                    {
-                        return $"{device.ToString()} is scanning";
-                    }
-            }
-
-            switch (e.criterror)
-            {
-                case null:
-                    break;
-                case DeviceEventArgs.CritErrorType.ErrPrice_Less_Then_Min:
-                    {
-                        throw new ArgumentException(string.Format("{0} {1} can't have so little price", device.ToString(), device.Manufacturer));
-                    }
-                case DeviceEventArgs.CritErrorType.ErrPrice_More_Then_Max:
-                    {
-                        throw new ArgumentException(string.Format("{0} {1} can't have so high price", device.ToString(), device.Manufacturer));
-                    }
-                case DeviceEventArgs.CritErrorType.ErrManufName_TooLong:
-                    {
-                        throw new ArgumentException(string.Format("{0} can't have so long  manufacturer's name: {1}", device.ToString(), device.Manufacturer));
-                    }
-
-            }
-
-
-            switch (e.error)
-            {
-                case null:
-                    break;
-                case DeviceEventArgs.ErrorType.ErrPaperEnd:
-                    {
-                        return $"Printer lost its paper";
-                    }
-                case DeviceEventArgs.ErrorType.ErrPaperTooMuch:
-                    {
-                        return $"MFP don't accept so much paper. Its more then {((MFP)device).MAXPAPERCOUNT}";
-                    }
-
-            }
-            return "Мы не знаем, что произошло, но помощь уже в пути";
-        }
-    }
+   
     public class DeviceEventArgs//несогласованность по доступности
     {
-        public DeviceEventArgs(PropertyType notify)
-        {
-            property = notify;
-            error = null;
-            criterror = null;
-        }
-        public DeviceEventArgs(ErrorType notify)
-        {
-            property = null;
-            error = notify;
-            criterror = null;
-        }
-        public DeviceEventArgs(CritErrorType notify)
-        {
-            property = null;
-            error = null;
-            criterror = notify;
-        }
-
         public ErrorType? error { get; private set; }
         public PropertyType? property { get; private set; }
         public CritErrorType? criterror { get; private set; }
+        public string message;
+        public DeviceEventArgs(string message = null)
+        {
+            property = null;
+            error = null;
+            criterror = null;
+        }
+        public DeviceEventArgs(PropertyType notify, string message = null) : this(message) { property = notify; }
+        public DeviceEventArgs(ErrorType notify, string message = null) : this(message) { error = notify; }
+        public DeviceEventArgs(CritErrorType notify, string message = null) : this(message) { criterror = notify; }
         public enum CritErrorType
         {
             ErrPrice_Less_Then_Min,

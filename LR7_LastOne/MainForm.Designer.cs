@@ -46,11 +46,6 @@
             this.bSwitchMainDevice = new System.Windows.Forms.Button();
             this.gbListOfDevices = new System.Windows.Forms.GroupBox();
             this.dgvListOfDevices = new System.Windows.Forms.DataGridView();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Manufacturer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PlugStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AssembleStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbMainDevice = new System.Windows.Forms.GroupBox();
             this.panelAssembleStat = new System.Windows.Forms.Panel();
             this.panelPlugStat = new System.Windows.Forms.Panel();
@@ -80,12 +75,18 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.gbMassages = new System.Windows.Forms.GroupBox();
-            this.tbMessage = new System.Windows.Forms.TextBox();
+            this.rtbMessage = new System.Windows.Forms.RichTextBox();
             this.gbBuyLeave = new System.Windows.Forms.GroupBox();
             this.bLeaveDNS = new System.Windows.Forms.Button();
             this.bBuyForFree = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerClearMSG = new System.Windows.Forms.Timer(this.components);
+            this.bPaperCash = new System.Windows.Forms.Button();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Manufacturer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PlugStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AssembleStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbShop_OtBaldy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice_OtBaldy)).BeginInit();
             this.gbInterface.SuspendLayout();
@@ -140,6 +141,7 @@
             this.tbManufact_OtBaldy.Name = "tbManufact_OtBaldy";
             this.tbManufact_OtBaldy.Size = new System.Drawing.Size(196, 26);
             this.tbManufact_OtBaldy.TabIndex = 2;
+            this.tbManufact_OtBaldy.Text = "Soni";
             // 
             // nudPrice_OtBaldy
             // 
@@ -201,6 +203,7 @@
             // rbDevice
             // 
             this.rbDevice.AutoSize = true;
+            this.rbDevice.Checked = true;
             this.rbDevice.Location = new System.Drawing.Point(7, 46);
             this.rbDevice.Name = "rbDevice";
             this.rbDevice.Size = new System.Drawing.Size(123, 24);
@@ -285,7 +288,7 @@
             this.gbListOfDevices.Controls.Add(this.dgvListOfDevices);
             this.gbListOfDevices.Location = new System.Drawing.Point(369, 131);
             this.gbListOfDevices.Name = "gbListOfDevices";
-            this.gbListOfDevices.Size = new System.Drawing.Size(968, 461);
+            this.gbListOfDevices.Size = new System.Drawing.Size(968, 477);
             this.gbListOfDevices.TabIndex = 3;
             this.gbListOfDevices.TabStop = false;
             this.gbListOfDevices.Text = "ДНС";
@@ -307,55 +310,8 @@
             this.dgvListOfDevices.ReadOnly = true;
             this.dgvListOfDevices.RowHeadersWidth = 62;
             this.dgvListOfDevices.RowTemplate.Height = 28;
-            this.dgvListOfDevices.Size = new System.Drawing.Size(962, 436);
+            this.dgvListOfDevices.Size = new System.Drawing.Size(962, 452);
             this.dgvListOfDevices.TabIndex = 0;
-            // 
-            // Type
-            // 
-            this.Type.DataPropertyName = "TypeDevice";
-            this.Type.FillWeight = 122.9805F;
-            this.Type.HeaderText = "Тип устройства";
-            this.Type.MinimumWidth = 8;
-            this.Type.Name = "Type";
-            this.Type.ReadOnly = true;
-            // 
-            // Manufacturer
-            // 
-            this.Manufacturer.DataPropertyName = "Manufacturer";
-            this.Manufacturer.FillWeight = 122.9805F;
-            this.Manufacturer.HeaderText = "Производитель";
-            this.Manufacturer.MinimumWidth = 8;
-            this.Manufacturer.Name = "Manufacturer";
-            this.Manufacturer.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            this.Price.FillWeight = 122.9805F;
-            this.Price.HeaderText = "Цена";
-            this.Price.MinimumWidth = 8;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // PlugStatus
-            // 
-            this.PlugStatus.DataPropertyName = "Plug";
-            this.PlugStatus.FillWeight = 45.83124F;
-            this.PlugStatus.HeaderText = "Сеть";
-            this.PlugStatus.MinimumWidth = 8;
-            this.PlugStatus.Name = "PlugStatus";
-            this.PlugStatus.ReadOnly = true;
-            this.PlugStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // AssembleStatus
-            // 
-            this.AssembleStatus.DataPropertyName = "Assamble";
-            this.AssembleStatus.FillWeight = 85.22726F;
-            this.AssembleStatus.HeaderText = "Собранность";
-            this.AssembleStatus.MinimumWidth = 8;
-            this.AssembleStatus.Name = "AssembleStatus";
-            this.AssembleStatus.ReadOnly = true;
-            this.AssembleStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // gbMainDevice
             // 
@@ -496,7 +452,7 @@
             this.gbManagerBut.Controls.Add(this.label5);
             this.gbManagerBut.Location = new System.Drawing.Point(13, 245);
             this.gbManagerBut.Name = "gbManagerBut";
-            this.gbManagerBut.Size = new System.Drawing.Size(350, 347);
+            this.gbManagerBut.Size = new System.Drawing.Size(350, 363);
             this.gbManagerBut.TabIndex = 5;
             this.gbManagerBut.TabStop = false;
             this.gbManagerBut.Text = "Управление";
@@ -554,11 +510,12 @@
             // gbPrintScanCopy
             // 
             this.gbPrintScanCopy.Controls.Add(this.bCopy);
+            this.gbPrintScanCopy.Controls.Add(this.bPaperCash);
             this.gbPrintScanCopy.Controls.Add(this.bScan);
             this.gbPrintScanCopy.Controls.Add(this.bPrint);
-            this.gbPrintScanCopy.Location = new System.Drawing.Point(7, 223);
+            this.gbPrintScanCopy.Location = new System.Drawing.Point(7, 194);
             this.gbPrintScanCopy.Name = "gbPrintScanCopy";
-            this.gbPrintScanCopy.Size = new System.Drawing.Size(337, 118);
+            this.gbPrintScanCopy.Size = new System.Drawing.Size(337, 163);
             this.gbPrintScanCopy.TabIndex = 0;
             this.gbPrintScanCopy.TabStop = false;
             // 
@@ -609,9 +566,9 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(140, 133);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(149, 20);
+            this.label11.Size = new System.Drawing.Size(140, 20);
             this.label11.TabIndex = 3;
-            this.label11.Text = "отнетсти в сервис";
+            this.label11.Text = "отнести в сервис";
             // 
             // label10
             // 
@@ -642,7 +599,7 @@
             // 
             // gbMassages
             // 
-            this.gbMassages.Controls.Add(this.tbMessage);
+            this.gbMassages.Controls.Add(this.rtbMessage);
             this.gbMassages.Location = new System.Drawing.Point(372, 13);
             this.gbMassages.Name = "gbMassages";
             this.gbMassages.Size = new System.Drawing.Size(666, 111);
@@ -650,17 +607,15 @@
             this.gbMassages.TabStop = false;
             this.gbMassages.Text = "СМС-ки";
             // 
-            // tbMessage
+            // rtbMessage
             // 
-            this.tbMessage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbMessage.Location = new System.Drawing.Point(3, 22);
-            this.tbMessage.Multiline = true;
-            this.tbMessage.Name = "tbMessage";
-            this.tbMessage.ReadOnly = true;
-            this.tbMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbMessage.Size = new System.Drawing.Size(660, 86);
-            this.tbMessage.TabIndex = 0;
-            this.tbMessage.TabStop = false;
+            this.rtbMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbMessage.Location = new System.Drawing.Point(3, 22);
+            this.rtbMessage.Name = "rtbMessage";
+            this.rtbMessage.ReadOnly = true;
+            this.rtbMessage.Size = new System.Drawing.Size(660, 86);
+            this.rtbMessage.TabIndex = 0;
+            this.rtbMessage.Text = "";
             // 
             // gbBuyLeave
             // 
@@ -668,7 +623,7 @@
             this.gbBuyLeave.Controls.Add(this.bBuyForFree);
             this.gbBuyLeave.Location = new System.Drawing.Point(1352, 439);
             this.gbBuyLeave.Name = "gbBuyLeave";
-            this.gbBuyLeave.Size = new System.Drawing.Size(334, 153);
+            this.gbBuyLeave.Size = new System.Drawing.Size(334, 169);
             this.gbBuyLeave.TabIndex = 7;
             this.gbBuyLeave.TabStop = false;
             // 
@@ -677,7 +632,7 @@
             this.bLeaveDNS.Dock = System.Windows.Forms.DockStyle.Right;
             this.bLeaveDNS.Location = new System.Drawing.Point(181, 22);
             this.bLeaveDNS.Name = "bLeaveDNS";
-            this.bLeaveDNS.Size = new System.Drawing.Size(150, 128);
+            this.bLeaveDNS.Size = new System.Drawing.Size(150, 144);
             this.bLeaveDNS.TabIndex = 0;
             this.bLeaveDNS.Text = "Покинуть ДНС";
             this.bLeaveDNS.UseVisualStyleBackColor = true;
@@ -688,7 +643,7 @@
             this.bBuyForFree.Dock = System.Windows.Forms.DockStyle.Left;
             this.bBuyForFree.Location = new System.Drawing.Point(3, 22);
             this.bBuyForFree.Name = "bBuyForFree";
-            this.bBuyForFree.Size = new System.Drawing.Size(150, 128);
+            this.bBuyForFree.Size = new System.Drawing.Size(150, 144);
             this.bBuyForFree.TabIndex = 0;
             this.bBuyForFree.Text = "Купить за бесплатно";
             this.bBuyForFree.UseVisualStyleBackColor = true;
@@ -703,11 +658,69 @@
             this.timerClearMSG.Interval = 5000;
             this.timerClearMSG.Tick += new System.EventHandler(this.timerClearMSG_Tick);
             // 
+            // bPaperCash
+            // 
+            this.bPaperCash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bPaperCash.Location = new System.Drawing.Point(22, 111);
+            this.bPaperCash.Name = "bPaperCash";
+            this.bPaperCash.Size = new System.Drawing.Size(258, 39);
+            this.bPaperCash.TabIndex = 1;
+            this.bPaperCash.Text = "Бумаги надыбать";
+            this.bPaperCash.UseVisualStyleBackColor = true;
+            this.bPaperCash.Click += new System.EventHandler(this.bScan_Click);
+            // 
+            // Type
+            // 
+            this.Type.DataPropertyName = "Type";
+            this.Type.FillWeight = 122.9805F;
+            this.Type.HeaderText = "Тип устройства";
+            this.Type.MinimumWidth = 8;
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            // 
+            // Manufacturer
+            // 
+            this.Manufacturer.DataPropertyName = "Manufacturer";
+            this.Manufacturer.FillWeight = 122.9805F;
+            this.Manufacturer.HeaderText = "Производитель";
+            this.Manufacturer.MinimumWidth = 8;
+            this.Manufacturer.Name = "Manufacturer";
+            this.Manufacturer.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.FillWeight = 122.9805F;
+            this.Price.HeaderText = "Цена";
+            this.Price.MinimumWidth = 8;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // PlugStatus
+            // 
+            this.PlugStatus.DataPropertyName = "Plug";
+            this.PlugStatus.FillWeight = 45.83124F;
+            this.PlugStatus.HeaderText = "Сеть";
+            this.PlugStatus.MinimumWidth = 8;
+            this.PlugStatus.Name = "PlugStatus";
+            this.PlugStatus.ReadOnly = true;
+            this.PlugStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // AssembleStatus
+            // 
+            this.AssembleStatus.DataPropertyName = "Assamble";
+            this.AssembleStatus.FillWeight = 85.22726F;
+            this.AssembleStatus.HeaderText = "Собранность";
+            this.AssembleStatus.MinimumWidth = 8;
+            this.AssembleStatus.Name = "AssembleStatus";
+            this.AssembleStatus.ReadOnly = true;
+            this.AssembleStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1706, 604);
+            this.ClientSize = new System.Drawing.Size(1706, 620);
             this.Controls.Add(this.gbBuyLeave);
             this.Controls.Add(this.gbMassages);
             this.Controls.Add(this.gbManagerBut);
@@ -734,7 +747,6 @@
             this.gbManagerBut.PerformLayout();
             this.gbPrintScanCopy.ResumeLayout(false);
             this.gbMassages.ResumeLayout(false);
-            this.gbMassages.PerformLayout();
             this.gbBuyLeave.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -781,7 +793,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox gbMassages;
-        private System.Windows.Forms.TextBox tbMessage;
         private System.Windows.Forms.Panel panelAssembleStat;
         private System.Windows.Forms.Panel panelPlugStat;
         private System.Windows.Forms.Label label13;
@@ -793,11 +804,13 @@
         private System.Windows.Forms.Button bShowInventory;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.CheckBox cbDNS;
+        private System.Windows.Forms.Timer timerClearMSG;
+        private System.Windows.Forms.RichTextBox rtbMessage;
+        private System.Windows.Forms.Button bPaperCash;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Manufacturer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn PlugStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn AssembleStatus;
-        private System.Windows.Forms.Timer timerClearMSG;
     }
 }
