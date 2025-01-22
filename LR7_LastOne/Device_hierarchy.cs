@@ -50,6 +50,7 @@ namespace LR7_LastOne
     //назначение класса абстрактным чтобы не было соблазна создавать его экземпляров
     abstract class Device_interface : IDevice
     {
+        //переменные
         protected HandleDeviceEvents Notify;
         protected int price;
         protected string manufacturer;
@@ -58,6 +59,7 @@ namespace LR7_LastOne
         public readonly int MINPRICE = 1000;
         public readonly int MAXPRICE = 10000;
         public readonly byte MAXMANUFACTURERNAMELENGTH = 15;
+        //свойства
         virtual public int Price
         {
             get => price;
@@ -68,10 +70,12 @@ namespace LR7_LastOne
                     Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.CritErrorType.ErrPrice_Less_Then_Min));
                 else if (value > MAXPRICE)
                     Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.CritErrorType.ErrPrice_More_Then_Max));
-                    
+
             }
         }
-        virtual public string Manufacturer { get => manufacturer;
+        virtual public string Manufacturer
+        {
+            get => manufacturer;
             private set
             {
                 manufacturer = value;
@@ -79,19 +83,9 @@ namespace LR7_LastOne
                     Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.CritErrorType.ErrManufName_TooLong));
             }
         }
-        virtual public bool IsPluggedIn { get => isPluggedIn; private set => isPluggedIn = value; }
-        virtual public bool IsAssembled { get => isAssembled; private set => isAssembled = value; }
-        virtual public void SwitchPlug()
-        {
-            IsPluggedIn = !IsPluggedIn;
-            Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.Plug_changed));
-        }
-        virtual public void Assemble()
-        {
-            IsAssembled = true;
-            Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.Assemble_changed));
-        }
-
+        virtual public bool IsPluggedIn { get => isPluggedIn;  set => isPluggedIn = value; }
+        virtual public bool IsAssembled { get => isAssembled;  set => isAssembled = value; }
+        //конструкторы
         protected Device_interface(int price, string manufacturer)
         {
             Notify = new HandleDeviceEvents();
@@ -112,15 +106,32 @@ namespace LR7_LastOne
         {
             Notify = new HandleDeviceEvents(notify, msg);
         }
-        virtual public bool Disassamble_by_yourself()
+        //методы работают исключительно через события или нет?
+        virtual public void SwitchPlug()
         {
-
-            return true;
+            IsPluggedIn = !IsPluggedIn;
+            Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.Plug_changed));
+        }
+        virtual public void Assemble()
+        {
+            IsAssembled = true;
+            Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.Assembled));
+        }
+        virtual public void DisassambleSam()
+        {
+            IsAssembled = false;
+            Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.DisassSam));
         }
         virtual public void Disassamble_shop()
         {
-
+            IsAssembled = false;
+            Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.DisassShop));
         }
+        virtual public void ThrowDevice()
+        {
+            Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.ThrowDev));
+        }
+        //класс обработчик событий
         public class HandleDeviceEvents
         {
             private event DeviceHandler Notify;
@@ -152,13 +163,13 @@ namespace LR7_LastOne
                 RegisterHandler(HandleCritErrors);
                 RegisterWriter(Console);
             }
-/*            public HandleDeviceEvents(HandleDeviceEvents notify)
-            {
-                UnRegisterHandler();
-                UnRegisterErrorWriter();
-                RegisterHandler(notify.);
-                RegisterErrorWriter(msg);
-            }*/
+            /*            public HandleDeviceEvents(HandleDeviceEvents notify)
+                        {
+                            UnRegisterHandler();
+                            UnRegisterErrorWriter();
+                            RegisterHandler(notify.);
+                            RegisterErrorWriter(msg);
+                        }*/
             public HandleDeviceEvents(DeviceHandler notify, HandleWriter msg)
             {
                 UnRegisterHandler();
@@ -170,19 +181,19 @@ namespace LR7_LastOne
             {
                 System.Console.WriteLine(msg);
             }
-            virtual protected void HandleMassages(Device_interface device, DeviceEventArgs e)
+            protected void HandleMassages(Device_interface device, DeviceEventArgs e)
             {
                 if (e.message != null)
                     ThrowMassage(e.message);
             }
-             protected void HandleProperties(Device_interface device, DeviceEventArgs e)
+            protected void HandleProperties(Device_interface device, DeviceEventArgs e)
             {
 
                 switch (e.property)
                 {
                     case null:
                         break;
-                    case DeviceEventArgs.PropertyType.Assemble_changed:
+                    case DeviceEventArgs.PropertyType.Assembled:
                         {
                             ThrowMassage($"Assemble changed of {device.ToString()}");
                         }
@@ -209,7 +220,7 @@ namespace LR7_LastOne
                         break;
                 }
             }
-             protected void HandleCritErrors(Device_interface device, DeviceEventArgs e)
+            protected void HandleCritErrors(Device_interface device, DeviceEventArgs e)
             {
                 switch (e.criterror)
                 {
@@ -229,7 +240,7 @@ namespace LR7_LastOne
                         }
                 }
             }
-             protected void HandleErrors(Device_interface device, DeviceEventArgs e)
+            protected void HandleErrors(Device_interface device, DeviceEventArgs e)
             {
                 switch (e.error)
                 {
@@ -249,17 +260,14 @@ namespace LR7_LastOne
                 ThrowMassage("Мы не знаем, что произошло, но помощь уже в пути");
             }
         }
-    }           
+    }
     class Device : Device_interface
     {
         private static string ClassName = "Device";
-        override public bool IsPluggedIn { get => isPluggedIn; }
-        override public bool IsAssembled { get => isAssembled; }
-      
         public Device(int price, string manufacturer) : base(price, manufacturer) { }
         public Device(int price, string manufacturer, HandleDeviceEvents notify) : base(price, manufacturer, notify) { }
-        public Device(int price, string manufacturer,  DeviceHandler notify,  HandleWriter msg) : base(price, manufacturer,  notify,  msg) { }
-        
+        public Device(int price, string manufacturer, DeviceHandler notify, HandleWriter msg) : base(price, manufacturer, notify, msg) { }
+
         public override string ToString() { return ClassName; }
         public static string GetClass() { return ClassName; }
     }
@@ -268,7 +276,7 @@ namespace LR7_LastOne
         public readonly int MAXPAPERCOUNT = 100;
         private static string ClassName = "Printer";
 
-        public Printer(int price, string manufacturer, int papercount = 10) : base(price, manufacturer) 
+        public Printer(int price, string manufacturer, int papercount = 10) : base(price, manufacturer)
         {
             Papercount = papercount;
         }
@@ -276,7 +284,7 @@ namespace LR7_LastOne
         {
             Papercount = papercount;
         }
-        public Printer(int price, string manufacturer,   DeviceHandler notify,  HandleWriter msg, int papercount = 10) : base(price, manufacturer,  notify,  msg)
+        public Printer(int price, string manufacturer, DeviceHandler notify, HandleWriter msg, int papercount = 10) : base(price, manufacturer, notify, msg)
         {
             Papercount = papercount;
         }
@@ -292,20 +300,25 @@ namespace LR7_LastOne
                     Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.ErrorType.ErrPaperTooMuch));
             }
         }
-        virtual public void Print(int paper_used = 1)
+        public void Print(int paper_used = 1)
         {
             Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.Printing));
-            papercount-=paper_used;
+            papercount -= paper_used;
+        }
+        public void PaperAdd(int paper = 1)
+        {
+            Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.PaperCash));
+            papercount += paper;
         }
         public override string ToString() { return ClassName; }
         public static string GetClass() { return ClassName; }
     }
-    class Scanner: Device, IScanner
+    class Scanner : Device, IScanner
     {
         private static string ClassName = "Scanner";
-        public Scanner(int price, string manufacturer): base(price, manufacturer) { }
+        public Scanner(int price, string manufacturer) : base(price, manufacturer) { }
         public Scanner(int price, string manufacturer, HandleDeviceEvents notify) : base(price, manufacturer, notify) { }
-        public Scanner(int price, string manufacturer,  DeviceHandler notify,  HandleWriter msg) : base(price, manufacturer,  notify,  msg) { }
+        public Scanner(int price, string manufacturer, DeviceHandler notify, HandleWriter msg) : base(price, manufacturer, notify, msg) { }
         virtual public void Scan()
         {
             Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.Scanning));
@@ -313,19 +326,19 @@ namespace LR7_LastOne
         public override string ToString() { return ClassName; }
         public static string GetClass() { return ClassName; }
     }
-    class MFP: Device, I_MFP
+    class MFP : Device, I_MFP
     {
         private static string ClassName = "MFP";
         public readonly int MAXPAPERCOUNT = 100;
-        public MFP(int price, string manufacturer, int papercount = 10):base(price, manufacturer)
+        public MFP(int price, string manufacturer, int papercount = 10) : base(price, manufacturer)
         {
             Papercount = papercount;
         }
-        public MFP(int price, string manufacturer,HandleDeviceEvents notify, int papercount = 10) : base(price, manufacturer, notify)
+        public MFP(int price, string manufacturer, HandleDeviceEvents notify, int papercount = 10) : base(price, manufacturer, notify)
         {
             Papercount = papercount;
         }
-        public MFP(int price, string manufacturer,  DeviceHandler notify,  HandleWriter msg, int papercount = 10) : base(price, manufacturer, notify,  msg)
+        public MFP(int price, string manufacturer, DeviceHandler notify, HandleWriter msg, int papercount = 10) : base(price, manufacturer, notify, msg)
         {
             Papercount = papercount;
         }
@@ -337,25 +350,30 @@ namespace LR7_LastOne
             {
                 if (value < 0)
                     Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.ErrorType.ErrPaperEnd));
-                else if(value > MAXPAPERCOUNT)
+                else if (value > MAXPAPERCOUNT)
                     Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.ErrorType.ErrPaperTooMuch));
+                papercount = value;
             }
         }
 
         public void Copy()
         {
             Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.Copying));
-            Scan();
-            Print();
         }
-         public void Scan()
+        public void Scan()
         {
             Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.Scanning));
         }
+        //не понимаю где реализовать логику изменения количества - в событии или в основном коде
         public void Print(int paper_used = 1)
         {
             Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.Printing));
-            papercount -= paper_used;
+            Papercount -= paper_used;
+        }
+        public void PaperAdd(int paper = 1)
+        {
+            Notify.RaiseLogEvent(this, new DeviceEventArgs(DeviceEventArgs.PropertyType.PaperCash));
+            Papercount += paper;
         }
         public override string ToString() { return ClassName; }
         public static string GetClass() { return ClassName; }

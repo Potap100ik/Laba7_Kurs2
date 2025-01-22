@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -10,113 +11,90 @@ using System.Windows.Forms;
 
 namespace LR7_LastOne
 {
-    class HandleDeviceEventsWF : Device_interface.HandleDeviceEvents
-    {
-        public HandleDeviceEventsWF() : base()
-        {
-            UnRegisterHandler();
-            DeviceHandler de = this.HandleProperties;
-            de += this.HandleCritErrors;
-            de += HandleErrors;
-            de += HandleMassages;
-            RegisterHandler(de);
-        }
-        public HandleDeviceEventsWF(HandleWriter msg) : this()
-        {
-            UnRegisterWriter();
-            RegisterWriter(msg);
-        }
-        new protected void HandleProperties(Device_interface device, DeviceEventArgs e)
-        {
 
-            switch (e.property)
-            {
-                case null:
-                    break;
-                case DeviceEventArgs.PropertyType.Assemble_changed:
-                    {
-                        RaiseLogEvent(device, new DeviceEventArgs($"WFAssemble changed of {device.ToString()}"));
-                    }
-                    break;
-                case DeviceEventArgs.PropertyType.Plug_changed:
-                    {
-                        RaiseLogEvent(device, new DeviceEventArgs("WFPlug changed of {device.ToString()}"));
-                    }
-                    break;
-                case DeviceEventArgs.PropertyType.Copying:
-                    {
-                        RaiseLogEvent(device, new DeviceEventArgs("WF{device.ToString()} is copying"));
-                    }
-                    break;
-                case DeviceEventArgs.PropertyType.Printing:
-                    {
-                        RaiseLogEvent(device, new DeviceEventArgs("WF{device.ToString()} is printing"));
-                    }
-                    break;
-                case DeviceEventArgs.PropertyType.Scanning:
-                    {
-                        RaiseLogEvent(device, new DeviceEventArgs("WF{device.ToString()} is scanning"));
-                    }
-                    break;
-            }
-        }
-        new protected void HandleCritErrors(Device_interface device, DeviceEventArgs e)
-        {
-            switch (e.criterror)
-            {
-                case null:
-                    break;
-                case DeviceEventArgs.CritErrorType.ErrPrice_Less_Then_Min:
-                    {
-                        throw new ArgumentException(string.Format("WF {0} {1} can't have so little price", device.ToString(), device.Manufacturer));
-                    }
-                case DeviceEventArgs.CritErrorType.ErrPrice_More_Then_Max:
-                    {
-                        throw new ArgumentException(string.Format("WF {0} {1} can't have so high price", device.ToString(), device.Manufacturer));
-                    }
-                case DeviceEventArgs.CritErrorType.ErrManufName_TooLong:
-                    {
-                        throw new ArgumentException(string.Format("WF {0} can't have so long manufacturer's name: {1}", device.ToString(), device.Manufacturer));
-                    }
-            }
-        }
-    }
 
     public partial class MainForm : Form
     {
-        delegate void UserStatusHandle(UserEventArgs.Status stat);
-        delegate void UserMoveHandle(UserEventArgs.Move move);
-        delegate void UserErrorHandle(UserEventArgs.Errors err);
-
         string filepath = "data.txt";
 
         Device[] DevInventary;
         Device MainDev;
-        HandleDeviceEventsWF Notify;
+        HandleDeviceEventsPROP Notify;
         HandleDeviceEventsWF ErrNotify;
-        event UserStatusHandle UserStat;
-        event UserMoveHandle UserM;
-        event UserErrorHandle UserErr;
-        UserEventArgs.Status Status;
+        HandleDeviceEventsWF.FormHandleArgs FormStatusArg;
+
         private void FormLoad()
         {
             MainDev = null;
             DevInventary = null;
-            Notify = new HandleDeviceEventsWF(MSGHandle);
-            ErrNotify = new HandleDeviceEventsWF(ErrorMSGHandle);
-            UserStat = UsStatusSwitch;
-            UserM = UsMoveCompile;
-            UserErr = UsErrorHandle;
-            Status = UserEventArgs.Status.StartPosition;
+            Notify = new HandleDeviceEventsPROP(this, MSGHandle);
+            ErrNotify = new HandleDeviceEventsPROP(this, ErrorMSGHandle);
+            FormStatusArg = new HandleDeviceEventsPROP.FormHandleArgs(FormStatus);
         }
         public void ErrorMSGHandle(string msg)
         {
+            
             rtbMessage.SelectionColor = System.Drawing.Color.Red;
-            rtbMessage.Text = msg + "\r\n\r\n" + rtbMessage.Text;
-            //rtbMessage.AppendText(msg + Environment.NewLine);
-            //rtbMessage.SelectionColor = System.Drawing.Color.Black;
-            //rtbMessage.SelectionStart = rtbMessage.Text.Length;
+            //rtbMessage.Text = msg + "\r\n" + rtbMessage.Text;
+            rtbMessage.AppendText(msg + Environment.NewLine);
+            rtbMessage.SelectionStart = rtbMessage.Text.Length - 1;
             rtbMessage.ScrollToCaret();
+        }
+        public void MSGHandle(string msg)
+        {
+            rtbMessage.SelectionColor = System.Drawing.Color.Black;
+            rtbMessage.Text = msg + "\r\n" + rtbMessage.Text;
+            rtbMessage.SelectionStart = rtbMessage.Text.Length- 1 ;
+            rtbMessage.ScrollToCaret();
+        }
+        void UpdateGrid()
+        {
+            dgvListOfDevices.Rows.Clear();
+
+            if (FormStatusArg.UserStat == HandleDeviceEventsWF.FormHandleArgs.Status.Inventary)
+                if (DevInventary != null)
+                    for (int i = 0; i < DevInventary.Length; ++i)
+                    {
+                        dgvListOfDevices.Rows.Add(i + 1, DevInventary[i].ToString(), DevInventary[i].Manufacturer, DevInventary[i].Price, GetPlugStat(DevInventary[i]), GetAssembleStat(DevInventary[i])); ;
+                    }
+                else
+                {
+                    ErrNotify.ThrowMassage("Инвентарь пуст, надо заскочить в магазин");
+                }
+            dgvListOfDevices.ClearSelection();
+        }
+        void UpdateMain()
+        {
+            if (MainDev != null)
+            {
+                if (MainDev.IsPluggedIn)
+                    panelPlugStat.BackColor = Color.Green;
+                else
+                    panelPlugStat.BackColor = Color.Red;
+                if (MainDev.IsAssembled)
+                    panelAssembleStat.BackColor = Color.Red;
+                else
+                    panelAssembleStat.BackColor = Color.Green;
+
+                tbMainType.Text = MainDev.ToString();
+                tbMainPrice.Text = MainDev.Price.ToString();
+                tbMainManuf.Text = MainDev.Manufacturer;
+                if (MainDev is Printer printer)
+                    tbPaperCount.Text = printer.Papercount.ToString();
+                else
+                    tbPaperCount.Text = "--";
+            }
+            else
+            {
+                panelAssembleStat.BackColor = Color.LightGray;
+                panelPlugStat.BackColor = Color.LightGray;
+                tbPaperCount.Text = "--";
+                tbMainType.Text = "";
+                tbMainPrice.Text = "";
+                tbMainManuf.Text = "";
+
+
+            }
         }
         private void AddDevice(Device dev)
         {
@@ -138,12 +116,6 @@ namespace LR7_LastOne
             }
 
             DevInventary = result;
-        }
-        public void MSGHandle(string msg)
-        {
-            rtbMessage.Text = msg + "\r\n\r\n" +rtbMessage.Text;
-            //rtbMessage.SelectionStart = rtbMessage.Text.Length;
-            rtbMessage.ScrollToCaret();
         }
         private Device CreateDevice()
         {
@@ -167,16 +139,16 @@ namespace LR7_LastOne
                     result = new MFP((int)nudPrice_OtBaldy.Value, tbManufact_OtBaldy.Text, Notify);
                 }
                 else
-                    ErrNotify.ThrowMassage("Как так получилось, не понятно, но что поделать");
+                    ErrNotify.ThrowMassage("Как так получилось, что ничего не выбрано???");
             }
             catch (Exception ex)
             {
                 ErrNotify.ThrowMassage(ex.Message);
             }
-            dgvListOfDevices.Rows.Add(result.ToString(), result.Manufacturer, result.Price, GetPlugStat(result), GetAssembleStat(result)); 
+            dgvListOfDevices.Rows.Add(dgvListOfDevices.Rows.Count + 1, result.ToString(), result.Manufacturer, result.Price, GetPlugStat(result), GetAssembleStat(result));
             return result;
         }
-        private Device[] GetDevices()
+        private Device[] LoadDevicesFromFile()
         {
             try
             {
@@ -234,9 +206,10 @@ namespace LR7_LastOne
         {
             try
             {
-                foreach (var dev in device)
+                for (int i = 0; i < device.Length; ++i)
                 {
-                    dgvListOfDevices.Rows.Add(dev.ToString(), dev.Manufacturer, dev.Price, GetPlugStat(dev), GetAssembleStat(dev)); ;
+                    dgvListOfDevices.Rows.Add(i+1, device[i].ToString(), device[i].Manufacturer, device[i].Price, GetPlugStat(device[i]), GetAssembleStat(device[i])); ;
+
                 }
                 return 0;
             }

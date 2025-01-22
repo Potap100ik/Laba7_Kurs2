@@ -14,8 +14,7 @@ namespace LR7_LastOne
         bool IsAssembled { get;  }
         void SwitchPlug();
         void Assemble();
-
-        bool Disassamble_by_yourself();
+        void DisassambleSam();
         void Disassamble_shop();
 
 
@@ -24,6 +23,7 @@ namespace LR7_LastOne
     {
         int Papercount { get; }
        void Print(int paper_used);
+        void PaperAdd(int paper);
     }
     interface IScanner: IDevice
     {

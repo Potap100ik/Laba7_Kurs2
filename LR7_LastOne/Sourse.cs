@@ -102,10 +102,14 @@ namespace LR7_LastOne
         public enum PropertyType
         {
             Plug_changed,
-            Assemble_changed,
+            Assembled,                          
+            ThrowDev,
+            DisassShop,
+            DisassSam,
             Printing,
             Scanning,
-            Copying
+            Copying,
+            PaperCash
         }
     }
 }

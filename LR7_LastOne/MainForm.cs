@@ -24,160 +24,218 @@ namespace LR7_LastOne
         private void MainForm_Load(object sender, EventArgs e)
         {
             FormLoad();
-            //настроим размеры экрана
             this.Width = 1150;
             this.Height = 452;
-            //изменяем доступность полей
-            UserStat.Invoke(UserEventArgs.Status.StartPosition);
-            
         }
-        
         //батоны все здесь
         private void bEnterDNS_Click(object sender, EventArgs e)
         {
-            UserStat.Invoke(UserEventArgs.Status.ShoppingDNS);
-            
-
+            FormStatusArg.UserStat = HandleDeviceEventsWF.FormHandleArgs.Status.ShoppingDNS;
         }
 
         private void bBuy_OtBaldy_Click(object sender, EventArgs e)
         {
-            UserStat.Invoke(UserEventArgs.Status.Shopping_OtBaldy);
+            FormStatusArg.UserStat = HandleDeviceEventsWF.FormHandleArgs.Status.Shopping_OtBaldy;
         }
 
         private void bShowInventory_Click(object sender, EventArgs e)
         {
-            UserStat.Invoke(UserEventArgs.Status.Inventary);
+            FormStatusArg.UserStat = HandleDeviceEventsWF.FormHandleArgs.Status.Inventary;
         }
 
         private void bSwitchMainDevice_Click(object sender, EventArgs e)
         {
-            if (dgvListOfDevices.SelectedRows.Count > 0)
-            {
-                DataGridViewRow selectedRow = dgvListOfDevices.SelectedRows[0];
-                string Type = selectedRow.Cells["Type"].Value.ToString();
-                int price = Convert.ToInt32(selectedRow.Cells["Price"].Value);
-                string manuf = selectedRow.Cells["Manufacturer"].Value.ToString();
-                Device result = null;
-                try
-                {
-
-                }
-                catch (Exception ex)
-                {
-                    ErrNotify.ThrowMassage(ex.Message);
-                }
-                AddDevice(result);
-            }
-            else
-            {
-                ErrNotify.ThrowMassage("Сначала надо выбрать строку, чтобы ее добавить в инвентарь");
-            }
+            FormStatusArg.UserProp = HandleDeviceEventsWF.FormHandleArgs.UserProperties.MainSwitch;
         }
 
         private void bBuyForFree_Click(object sender, EventArgs e)
         {
-            if (Status == UserEventArgs.Status.Shopping_OtBaldy)
-            {
-                Device result = CreateDevice();
-                if (result != null)
-                    AddDevice(result);
-            }
-            else if (Status == UserEventArgs.Status.ShoppingDNS)
-            {
-                if (dgvListOfDevices.SelectedRows.Count > 0)
-                {
-                    DataGridViewRow selectedRow = dgvListOfDevices.SelectedRows[0];
-                    string Type = selectedRow.Cells["Type"].Value.ToString();
-                    int price = Convert.ToInt32(selectedRow.Cells["Price"].Value);
-                    string manuf = selectedRow.Cells["Manufacturer"].Value.ToString();
-                    Device result = null;
-                    try
-                    {
-                        if (Type == Device.GetClass())
-                        {
-                            result = new Device(price, manuf, Notify);
-                        }
-                        else if (Type == Printer.GetClass())
-                        {
-                            result = new Printer(price, manuf, Notify);
-                        }
-                        else if (Type == Scanner.GetClass())
-                        {
-                            result = new Scanner(price, manuf, Notify);
-                        }
-                        else if (Type == MFP.GetClass())
-                        {
-                            result = new MFP(price, manuf, Notify);
-                        }
-                        else
-                            ErrNotify.ThrowMassage("Как так получилось, не понятно, но что поделать");
-                    }
-                    catch (Exception ex)
-                    {
-                        ErrNotify.ThrowMassage(ex.Message);
-                    }
-                    AddDevice(result);
-                }
-                else
-                {
-                    ErrNotify.ThrowMassage("Сначала надо выбрать строку, чтобы ее добавить в инвентарь");
-                }
-            }
-            else
-                ErrNotify.ThrowMassage("как так получилось: нажатие кнопки покупки запрещено");
-
+            FormStatusArg.UserProp = HandleDeviceEventsWF.FormHandleArgs.UserProperties.BuyDevice;
         }
 
         private void bLeaveDNS_Click(object sender, EventArgs e)
         {
-            UserStat.Invoke(UserEventArgs.Status.StartPosition);
+            FormStatusArg.UserStat = HandleDeviceEventsWF.FormHandleArgs.Status.Inventary;
         }
 
         private void bPlugSwitch_Click(object sender, EventArgs e)
         {
-            UserM(UserEventArgs.Move.PlugSwitch);
+            try
+            {
+                if (MainDev == null)
+                {
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrMainDevEmpty));
+                    return;
+                }
+                else
+                    MainDev.SwitchPlug();
+
+            }
+            catch (Exception ex)
+            {
+                ErrNotify.ThrowMassage(ex.Message);
+            }
         }
 
         private void bAssem_Click(object sender, EventArgs e)
         {
-            UserM(UserEventArgs.Move.Assem);
+            try
+            {
+                if (MainDev == null)
+                {
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrMainDevEmpty));
+                    return;
+                }
+                else
+                    MainDev.Assemble();
+
+            }
+            catch (Exception ex)
+            {
+                ErrNotify.ThrowMassage(ex.Message);
+            }
         }
 
         private void bDisassSam_Click(object sender, EventArgs e)
         {
-            UserM(UserEventArgs.Move.DisassSam);
+            try
+            {
+                if (MainDev == null)
+                {
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrMainDevEmpty));
+                    return;
+                }
+                else
+                    MainDev.DisassambleSam();
+
+            }
+            catch (Exception ex)
+            {
+                ErrNotify.ThrowMassage(ex.Message);
+            }
         }
 
         private void bDisassShop_Click(object sender, EventArgs e)
         {
-            UserM(UserEventArgs.Move.DisassShop);
-        }
+            try
+            {
+                if (MainDev == null)
+                {
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrMainDevEmpty));
+                    return;
+                }
+                else
+                    MainDev.Disassamble_shop();
 
-        private void bThrowDev_Click(object sender, EventArgs e)
-        {
-            UserM(UserEventArgs.Move.ThrowDev);
-        }
-
-        private void bPrint_Click(object sender, EventArgs e)
-        {
-            UserM(UserEventArgs.Move.Print);
+            }
+            catch (Exception ex)
+            {
+                ErrNotify.ThrowMassage(ex.Message);
+            }
         }
 
         private void bScan_Click(object sender, EventArgs e)
         {
-            UserM(UserEventArgs.Move.Scan);
+            try
+            {
+                if (MainDev == null)
+                {
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrMainDevEmpty));
+                    return;
+                }
+                else
+                if (MainDev is Scanner scanner)
+                    scanner.Scan();//допускаем ведь есть try и логика кнопок
+                else
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrOptionalLost));
+            }
+            catch (Exception ex)
+            {
+                ErrNotify.ThrowMassage(ex.Message);
+            }
+        }
+
+        private void bPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MainDev == null)
+                {
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrMainDevEmpty));
+                    return;
+                }
+                else
+                if (MainDev is Printer printer)
+                    printer.Print();//допускаем ведь есть try и логика кнопок
+                else
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrOptionalLost));
+
+            }
+            catch (Exception ex)
+            {
+                ErrNotify.ThrowMassage(ex.Message);
+            }
+        }
+
+        private void bThrow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MainDev == null)
+                {
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrMainDevEmpty));
+                    return;
+                }
+               else
+                    MainDev.ThrowDevice();
+            }
+            catch (Exception ex)
+            {
+                ErrNotify.ThrowMassage(ex.Message);
+            }
         }
 
         private void bCopy_Click(object sender, EventArgs e)
         {
-            UserM(UserEventArgs.Move.Copy);
+            try
+            {
+                if (MainDev == null)
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrMainDevEmpty));
+                else
+                {
+                    if (MainDev is MFP mfp)
+                        mfp.Copy();//допускаем ведь есть try и логика кнопок
+                    else
+                        ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrOptionalLost));
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrNotify.ThrowMassage(ex.Message);
+            }
         }
 
-        private void timerClearMSG_Tick(object sender, EventArgs e)
+        private void bPaperCash_Click(object sender, EventArgs e)
         {
-            rtbMessage.Clear();
-            timerClearMSG.Stop();
+            try
+            {
+                if (MainDev == null)
+                {
+                    ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrMainDevEmpty));
+                    return;
+                }
+                else
+                {
+                    if (MainDev is Printer printer)
+                        printer.PaperAdd();//допускаем ведь есть try и логика кнопок
+                    else
+                        ErrNotify.RaiseLogEvent(MainDev, new HandleDeviceEventsWF.UserEventArgs(HandleDeviceEventsWF.UserEventArgs.UserErrors.ErrOptionalLost));
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrNotify.ThrowMassage(ex.Message);
+            }
         }
     }
 }
