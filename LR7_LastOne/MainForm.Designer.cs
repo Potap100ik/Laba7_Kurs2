@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbShop_OtBaldy = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,8 +43,8 @@
             this.cbDNS = new System.Windows.Forms.CheckBox();
             this.bEnterDNS = new System.Windows.Forms.Button();
             this.bBuy_OtBaldy = new System.Windows.Forms.Button();
-            this.bShowInventory = new System.Windows.Forms.Button();
-            this.bSwitchMainDevice = new System.Windows.Forms.Button();
+            this.bInventoryShow = new System.Windows.Forms.Button();
+            this.bMainDeviceSwitch = new System.Windows.Forms.Button();
             this.gbListOfDevices = new System.Windows.Forms.GroupBox();
             this.dgvListOfDevices = new System.Windows.Forms.DataGridView();
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,7 +85,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.gbMassages = new System.Windows.Forms.GroupBox();
             this.rtbMessage = new System.Windows.Forms.RichTextBox();
-            this.gbByeLeave = new System.Windows.Forms.GroupBox();
+            this.gbBuyLeave = new System.Windows.Forms.GroupBox();
             this.bLeaveDNS = new System.Windows.Forms.Button();
             this.bBuyForFree = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -97,7 +99,7 @@
             this.gbManagerBut.SuspendLayout();
             this.gbPrintScanCopy.SuspendLayout();
             this.gbMassages.SuspendLayout();
-            this.gbByeLeave.SuspendLayout();
+            this.gbBuyLeave.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbShop_OtBaldy
@@ -110,9 +112,9 @@
             this.gbShop_OtBaldy.Controls.Add(this.rbScanner);
             this.gbShop_OtBaldy.Controls.Add(this.rbPrinter);
             this.gbShop_OtBaldy.Controls.Add(this.rbDevice);
-            this.gbShop_OtBaldy.Location = new System.Drawing.Point(1352, 131);
+            this.gbShop_OtBaldy.Location = new System.Drawing.Point(1352, 141);
             this.gbShop_OtBaldy.Name = "gbShop_OtBaldy";
-            this.gbShop_OtBaldy.Size = new System.Drawing.Size(334, 302);
+            this.gbShop_OtBaldy.Size = new System.Drawing.Size(334, 292);
             this.gbShop_OtBaldy.TabIndex = 0;
             this.gbShop_OtBaldy.TabStop = false;
             this.gbShop_OtBaldy.Text = "Индивидуальный заказ";
@@ -217,10 +219,10 @@
             this.gbInterface.Controls.Add(this.cbDNS);
             this.gbInterface.Controls.Add(this.bEnterDNS);
             this.gbInterface.Controls.Add(this.bBuy_OtBaldy);
-            this.gbInterface.Controls.Add(this.bShowInventory);
-            this.gbInterface.Location = new System.Drawing.Point(1189, 13);
+            this.gbInterface.Controls.Add(this.bInventoryShow);
+            this.gbInterface.Location = new System.Drawing.Point(1186, 13);
             this.gbInterface.Name = "gbInterface";
-            this.gbInterface.Size = new System.Drawing.Size(497, 111);
+            this.gbInterface.Size = new System.Drawing.Size(500, 111);
             this.gbInterface.TabIndex = 2;
             this.gbInterface.TabStop = false;
             this.gbInterface.Text = "Кнопочки";
@@ -228,7 +230,7 @@
             // cbDNS
             // 
             this.cbDNS.AutoSize = true;
-            this.cbDNS.Location = new System.Drawing.Point(272, 83);
+            this.cbDNS.Location = new System.Drawing.Point(276, 83);
             this.cbDNS.Name = "cbDNS";
             this.cbDNS.Size = new System.Drawing.Size(219, 24);
             this.cbDNS.TabIndex = 4;
@@ -237,55 +239,62 @@
             // 
             // bEnterDNS
             // 
+            this.bEnterDNS.BackColor = System.Drawing.Color.Black;
+            this.bEnterDNS.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bEnterDNS.BackgroundImage")));
+            this.bEnterDNS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bEnterDNS.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.bEnterDNS.FlatAppearance.BorderSize = 3;
+            this.bEnterDNS.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.bEnterDNS.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.bEnterDNS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bEnterDNS.Location = new System.Drawing.Point(272, 22);
+            this.bEnterDNS.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.bEnterDNS.Location = new System.Drawing.Point(274, 22);
             this.bEnterDNS.Name = "bEnterDNS";
             this.bEnterDNS.Size = new System.Drawing.Size(218, 55);
             this.bEnterDNS.TabIndex = 3;
-            this.bEnterDNS.Text = "ДНС";
-            this.bEnterDNS.UseVisualStyleBackColor = true;
+            this.bEnterDNS.UseVisualStyleBackColor = false;
             this.bEnterDNS.Click += new System.EventHandler(this.bEnterDNS_Click);
             // 
             // bBuy_OtBaldy
             // 
             this.bBuy_OtBaldy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bBuy_OtBaldy.Location = new System.Drawing.Point(117, 22);
+            this.bBuy_OtBaldy.Location = new System.Drawing.Point(116, 22);
             this.bBuy_OtBaldy.Name = "bBuy_OtBaldy";
-            this.bBuy_OtBaldy.Size = new System.Drawing.Size(153, 86);
+            this.bBuy_OtBaldy.Size = new System.Drawing.Size(155, 86);
             this.bBuy_OtBaldy.TabIndex = 2;
-            this.bBuy_OtBaldy.Text = "Индивидуальный заказ";
+            this.bBuy_OtBaldy.Text = "Личный заказ";
             this.bBuy_OtBaldy.UseVisualStyleBackColor = true;
             this.bBuy_OtBaldy.Click += new System.EventHandler(this.bBuy_OtBaldy_Click);
             // 
-            // bShowInventory
+            // bInventoryShow
             // 
-            this.bShowInventory.Dock = System.Windows.Forms.DockStyle.Left;
-            this.bShowInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bShowInventory.Location = new System.Drawing.Point(3, 22);
-            this.bShowInventory.Name = "bShowInventory";
-            this.bShowInventory.Size = new System.Drawing.Size(110, 86);
-            this.bShowInventory.TabIndex = 1;
-            this.bShowInventory.Text = "Инвентарь";
-            this.bShowInventory.UseVisualStyleBackColor = true;
-            this.bShowInventory.Click += new System.EventHandler(this.bShowInventory_Click);
+            this.bInventoryShow.Dock = System.Windows.Forms.DockStyle.Left;
+            this.bInventoryShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bInventoryShow.Location = new System.Drawing.Point(3, 22);
+            this.bInventoryShow.Name = "bInventoryShow";
+            this.bInventoryShow.Size = new System.Drawing.Size(110, 86);
+            this.bInventoryShow.TabIndex = 1;
+            this.bInventoryShow.Text = "Инвентарь";
+            this.bInventoryShow.UseVisualStyleBackColor = true;
+            this.bInventoryShow.Click += new System.EventHandler(this.bShowInventory_Click);
             // 
-            // bSwitchMainDevice
+            // bMainDeviceSwitch
             // 
-            this.bSwitchMainDevice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bSwitchMainDevice.Location = new System.Drawing.Point(1032, 35);
-            this.bSwitchMainDevice.Name = "bSwitchMainDevice";
-            this.bSwitchMainDevice.Size = new System.Drawing.Size(133, 86);
-            this.bSwitchMainDevice.TabIndex = 0;
-            this.bSwitchMainDevice.Text = "Сменить оружие";
-            this.bSwitchMainDevice.UseVisualStyleBackColor = true;
-            this.bSwitchMainDevice.Click += new System.EventHandler(this.bSwitchMainDevice_Click);
+            this.bMainDeviceSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bMainDeviceSwitch.Location = new System.Drawing.Point(1032, 35);
+            this.bMainDeviceSwitch.Name = "bMainDeviceSwitch";
+            this.bMainDeviceSwitch.Size = new System.Drawing.Size(133, 86);
+            this.bMainDeviceSwitch.TabIndex = 0;
+            this.bMainDeviceSwitch.Text = "Сменить оружие";
+            this.bMainDeviceSwitch.UseVisualStyleBackColor = true;
+            this.bMainDeviceSwitch.Click += new System.EventHandler(this.bSwitchMainDevice_Click);
             // 
             // gbListOfDevices
             // 
             this.gbListOfDevices.Controls.Add(this.dgvListOfDevices);
-            this.gbListOfDevices.Location = new System.Drawing.Point(369, 131);
+            this.gbListOfDevices.Location = new System.Drawing.Point(369, 141);
             this.gbListOfDevices.Name = "gbListOfDevices";
-            this.gbListOfDevices.Size = new System.Drawing.Size(968, 477);
+            this.gbListOfDevices.Size = new System.Drawing.Size(968, 467);
             this.gbListOfDevices.TabIndex = 3;
             this.gbListOfDevices.TabStop = false;
             this.gbListOfDevices.Text = "ДНС";
@@ -294,8 +303,15 @@
             // 
             this.dgvListOfDevices.AllowUserToAddRows = false;
             this.dgvListOfDevices.AllowUserToDeleteRows = false;
-            this.dgvListOfDevices.AllowUserToOrderColumns = true;
+            this.dgvListOfDevices.AllowUserToResizeColumns = false;
+            this.dgvListOfDevices.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvListOfDevices.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListOfDevices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvListOfDevices.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvListOfDevices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListOfDevices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Index,
@@ -311,8 +327,9 @@
             this.dgvListOfDevices.RowHeadersVisible = false;
             this.dgvListOfDevices.RowHeadersWidth = 62;
             this.dgvListOfDevices.RowTemplate.Height = 28;
-            this.dgvListOfDevices.Size = new System.Drawing.Size(962, 452);
+            this.dgvListOfDevices.Size = new System.Drawing.Size(962, 442);
             this.dgvListOfDevices.TabIndex = 0;
+            this.dgvListOfDevices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListOfDevices_CellDoubleClick);
             // 
             // Index
             // 
@@ -352,7 +369,7 @@
             // 
             // PlugStatus
             // 
-            this.PlugStatus.DataPropertyName = "Plug";
+            this.PlugStatus.DataPropertyName = "PlugStatus";
             this.PlugStatus.FillWeight = 50.93518F;
             this.PlugStatus.HeaderText = "Сеть";
             this.PlugStatus.MinimumWidth = 8;
@@ -385,9 +402,9 @@
             this.gbMainDevice.Controls.Add(this.label6);
             this.gbMainDevice.Controls.Add(this.label3);
             this.gbMainDevice.Controls.Add(this.pictureBox1);
-            this.gbMainDevice.Location = new System.Drawing.Point(13, 13);
+            this.gbMainDevice.Location = new System.Drawing.Point(13, 5);
             this.gbMainDevice.Name = "gbMainDevice";
-            this.gbMainDevice.Size = new System.Drawing.Size(350, 225);
+            this.gbMainDevice.Size = new System.Drawing.Size(350, 233);
             this.gbMainDevice.TabIndex = 4;
             this.gbMainDevice.TabStop = false;
             this.gbMainDevice.Text = "Статус устройства";
@@ -395,10 +412,12 @@
             // tbMainType
             // 
             this.tbMainType.AutoSize = true;
-            this.tbMainType.Location = new System.Drawing.Point(15, 162);
+            this.tbMainType.Font = new System.Drawing.Font("Alien Encounters", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMainType.Location = new System.Drawing.Point(7, 162);
             this.tbMainType.Name = "tbMainType";
-            this.tbMainType.Size = new System.Drawing.Size(0, 20);
+            this.tbMainType.Size = new System.Drawing.Size(71, 23);
             this.tbMainType.TabIndex = 6;
+            this.tbMainType.Text = "пусто";
             // 
             // panelAssembleStat
             // 
@@ -440,6 +459,7 @@
             this.tbMainPrice.ReadOnly = true;
             this.tbMainPrice.Size = new System.Drawing.Size(116, 26);
             this.tbMainPrice.TabIndex = 4;
+            this.tbMainPrice.TabStop = false;
             // 
             // label4
             // 
@@ -500,6 +520,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(10, 26);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(207, 120);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -632,11 +653,14 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.LightCoral;
+            this.label12.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label12.Location = new System.Drawing.Point(140, 165);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(93, 20);
+            this.label12.Size = new System.Drawing.Size(120, 23);
             this.label12.TabIndex = 3;
             this.label12.Text = "на помойку";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label11
             // 
@@ -677,9 +701,9 @@
             // gbMassages
             // 
             this.gbMassages.Controls.Add(this.rtbMessage);
-            this.gbMassages.Location = new System.Drawing.Point(372, 13);
+            this.gbMassages.Location = new System.Drawing.Point(372, 5);
             this.gbMassages.Name = "gbMassages";
-            this.gbMassages.Size = new System.Drawing.Size(637, 111);
+            this.gbMassages.Size = new System.Drawing.Size(637, 137);
             this.gbMassages.TabIndex = 6;
             this.gbMassages.TabStop = false;
             this.gbMassages.Text = "СМС-ки";
@@ -692,19 +716,19 @@
             this.rtbMessage.ReadOnly = true;
             this.rtbMessage.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.rtbMessage.ShowSelectionMargin = true;
-            this.rtbMessage.Size = new System.Drawing.Size(631, 86);
+            this.rtbMessage.Size = new System.Drawing.Size(631, 112);
             this.rtbMessage.TabIndex = 0;
             this.rtbMessage.Text = "";
             // 
-            // gbByeLeave
+            // gbBuyLeave
             // 
-            this.gbByeLeave.Controls.Add(this.bLeaveDNS);
-            this.gbByeLeave.Controls.Add(this.bBuyForFree);
-            this.gbByeLeave.Location = new System.Drawing.Point(1352, 439);
-            this.gbByeLeave.Name = "gbByeLeave";
-            this.gbByeLeave.Size = new System.Drawing.Size(334, 169);
-            this.gbByeLeave.TabIndex = 7;
-            this.gbByeLeave.TabStop = false;
+            this.gbBuyLeave.Controls.Add(this.bLeaveDNS);
+            this.gbBuyLeave.Controls.Add(this.bBuyForFree);
+            this.gbBuyLeave.Location = new System.Drawing.Point(1352, 439);
+            this.gbBuyLeave.Name = "gbBuyLeave";
+            this.gbBuyLeave.Size = new System.Drawing.Size(334, 169);
+            this.gbBuyLeave.TabIndex = 7;
+            this.gbBuyLeave.TabStop = false;
             // 
             // bLeaveDNS
             // 
@@ -734,14 +758,14 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1706, 620);
-            this.Controls.Add(this.gbByeLeave);
+            this.Controls.Add(this.gbBuyLeave);
             this.Controls.Add(this.gbMassages);
             this.Controls.Add(this.gbManagerBut);
             this.Controls.Add(this.gbMainDevice);
-            this.Controls.Add(this.bSwitchMainDevice);
+            this.Controls.Add(this.bMainDeviceSwitch);
             this.Controls.Add(this.gbListOfDevices);
             this.Controls.Add(this.gbInterface);
             this.Controls.Add(this.gbShop_OtBaldy);
@@ -764,7 +788,7 @@
             this.gbManagerBut.PerformLayout();
             this.gbPrintScanCopy.ResumeLayout(false);
             this.gbMassages.ResumeLayout(false);
-            this.gbByeLeave.ResumeLayout(false);
+            this.gbBuyLeave.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -785,7 +809,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbManufact_OtBaldy;
-        private System.Windows.Forms.Button bSwitchMainDevice;
+        private System.Windows.Forms.Button bMainDeviceSwitch;
         private System.Windows.Forms.TextBox tbMainManuf;
         private System.Windows.Forms.TextBox tbMainPrice;
         private System.Windows.Forms.Label label4;
@@ -813,22 +837,22 @@
         private System.Windows.Forms.Panel panelAssembleStat;
         private System.Windows.Forms.Panel panelPlugStat;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.GroupBox gbByeLeave;
+        private System.Windows.Forms.GroupBox gbBuyLeave;
         private System.Windows.Forms.Button bLeaveDNS;
         private System.Windows.Forms.Button bBuyForFree;
         private System.Windows.Forms.Button bEnterDNS;
         private System.Windows.Forms.Button bBuy_OtBaldy;
-        private System.Windows.Forms.Button bShowInventory;
+        private System.Windows.Forms.Button bInventoryShow;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.CheckBox cbDNS;
         private System.Windows.Forms.RichTextBox rtbMessage;
         private System.Windows.Forms.Button bPaperCash;
+        private System.Windows.Forms.Label tbMainType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Index;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Manufacturer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn PlugStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn AssembleStatus;
-        private System.Windows.Forms.Label tbMainType;
     }
 }

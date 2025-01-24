@@ -7,17 +7,30 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static LR7_LastOne.Device_interface;
 
+
 namespace LR7_LastOne
 {
     class FileReader
     {
-        public static Device[] GetDevices(Device_interface.HandleDeviceEvents notify, string path = "data.txt")
+        public static bool FileOpen(string filepath, long maxSizeBytes)
         {
-            
-            if (!File.Exists(path))
+            FileInfo fileInfo = new FileInfo(filepath);
+            if (!fileInfo.Exists)
             {
-                throw new FileNotFoundException($"File {path} doesn't exists");
+                throw new FileNotFoundException($"File {filepath} doesn't exists");
             }
+            else if (fileInfo.Length >= maxSizeBytes)
+            {
+                throw new FileNotFoundException($"File {filepath} is too big for this program. File size: {fileInfo.Length}; Max: {maxSizeBytes}");
+            }
+            return true;
+        }
+        public static Device[] GetDevices(Device_interface.HandleDeviceEvents notify, Device_interface.HandleDeviceEvents errMsg = null, string path = "data.txt")
+        {
+            if (!FileOpen(path, 2 * 1024 * 1024))
+                return null;
+            if (errMsg == null)
+                errMsg = notify;
             string[] lines = File.ReadAllLines(path); // Чтение всех строк файла
             Device[] result_file = new Device[lines.Length];
             int price;
@@ -33,30 +46,29 @@ namespace LR7_LastOne
                     {
                         if (line[0] == Device.GetClass())
                         {
-                            result_file[j] = new Device(price, manufacturer, notify);
+                            result_file[j] = new Device(price, manufacturer, notify, errMsg);
                         }
                         else if (line[0] == Printer.GetClass())
                         {
-                            result_file[j] = new Printer(price, manufacturer, notify);
+                            result_file[j] = new Printer(price, manufacturer, notify, errMsg);
                         }
                         else if (line[0] == Scanner.GetClass())
                         {
-                            result_file[j] = new Scanner(price, manufacturer, notify);
+                            result_file[j] = new Scanner(price, manufacturer, notify, errMsg);
                         }
                         else if (line[0] == MFP.GetClass())
                         {
-                            result_file[j] = new MFP(price, manufacturer, notify);
+                            result_file[j] = new MFP(price, manufacturer, notify, errMsg);
                         }
                         else
                         {
-                            notify.ThrowMassage(($"Неверный формат строки: {lines[i]}"));
+                            notify.ThrowMassage(new DeviceEventArgs($"FileError: Неверный формат строки: {lines[i]}"));
                         }
                     }
                     catch (ArgumentException ex)
                     {
                         result_file[j] = null;
-                        Console.WriteLine();
-                        notify.ThrowMassage(ex.Message);
+                        errMsg.ThrowMassage(new DeviceEventArgs("FileError: " + ex.Message));
                     }
                 }
                 if (result_file[j] == null) --j;
@@ -70,34 +82,42 @@ namespace LR7_LastOne
             }
             return result;
         }
-
     }
-   
     public class DeviceEventArgs//несогласованность по доступности
     {
         public ErrorType? error { get; private set; }
         public PropertyType? property { get; private set; }
         public CritErrorType? criterror { get; private set; }
-        public string message;
-        public DeviceEventArgs(string message = null)
+        public string message { get; private set; }
+        public bool? status { get; private set; }
+        public DeviceEventArgs(string message = null, bool? status = null)
         {
             property = null;
             error = null;
             criterror = null;
+            this.message = message;
+            this.status = status;
         }
-        public DeviceEventArgs(PropertyType notify, string message = null) : this(message) { property = notify; }
-        public DeviceEventArgs(ErrorType notify, string message = null) : this(message) { error = notify; }
-        public DeviceEventArgs(CritErrorType notify, string message = null) : this(message) { criterror = notify; }
+        public DeviceEventArgs(PropertyType notify, string message = null, bool? status = null) : this(message, status) { property = notify; }
+        public DeviceEventArgs(ErrorType notify, string message = null, bool? status = null) : this(message, status) { error = notify; }
+        public DeviceEventArgs(CritErrorType notify, string message = null, bool? status = null) : this(message, status) { criterror = notify; }
+        public override string ToString()
+        {
+            return message != null ? message : "no messages";
+        }
         public enum CritErrorType
         {
             ErrPrice_Less_Then_Min,
             ErrPrice_More_Then_Max,
-            ErrManufName_TooLong
+            ErrManufName_TooLong,
+            ErrManufName_Empty
         }
         public enum ErrorType
         {
             ErrPaperTooMuch,
-            ErrPaperEnd
+            ErrPaperEnd,
+            ErrUsingAsembled,
+            ErrUsingUnPlug
         }
         public enum PropertyType
         {
@@ -108,7 +128,7 @@ namespace LR7_LastOne
             DisassSam,
             Printing,
             Scanning,
-            Copying,
+            StartCopying,
             PaperCash
         }
     }

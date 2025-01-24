@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LR7_LastOne.Device_interface">
+    <Position X="9" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="LR7_LastOne.Device_interface.HandleDeviceEvents">
+        <TypeIdentifier>
+          <NewMemberFileName>Device_hierarchy.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAgBAGAIAQAABAAAQAAAAABAAAAAAABATACAEAQEAIA=</HashCode>
+      <FileName>Device_hierarchy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LR7_LastOne.Device">
+    <Position X="4.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAEAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Device_hierarchy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LR7_LastOne.Printer">
+    <Position X="2" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAACAAAAEAAAAAAAACAAAAAEEAAAABAAEAAA=</HashCode>
+      <FileName>Device_hierarchy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LR7_LastOne.Scanner">
+    <Position X="4.25" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAACAAAAEAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Device_hierarchy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LR7_LastOne.MFP">
+    <Position X="6.5" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAABAAACAAAAEAAAAAAAACgAAAAEEAAAABAAEAAA=</HashCode>
+      <FileName>Device_hierarchy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LR7_LastOne.MainForm">
+    <Position X="28.75" Y="0.75" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="LR7_LastOne.MainForm.HandleDeviceErrorsInWF">
+        <TypeIdentifier>
+          <NewMemberFileName>MainForm_E.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="LR7_LastOne.MainForm.UserEventArgs">
+        <Compartments>
+          <Compartment Name="Nested Types" Collapsed="false" />
+        </Compartments>
+        <NestedTypes>
+          <Enum Name="LR7_LastOne.MainForm.UserEventArgs.UserErrors">
+            <TypeIdentifier>
+              <NewMemberFileName>MainForm_E.cs</NewMemberFileName>
+            </TypeIdentifier>
+          </Enum>
+        </NestedTypes>
+        <TypeIdentifier>
+          <NewMemberFileName>MainForm_E.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="LR7_LastOne.MainForm.FormEventArgs">
+        <NestedTypes>
+          <Delegate Name="LR7_LastOne.MainForm.FormEventArgs.FormStatusHandler" Collapsed="true">
+            <TypeIdentifier>
+              <NewMemberFileName>MainForm_E.cs</NewMemberFileName>
+            </TypeIdentifier>
+          </Delegate>
+          <Enum Name="LR7_LastOne.MainForm.FormEventArgs.UserProperties" Collapsed="true">
+            <TypeIdentifier>
+              <NewMemberFileName>MainForm_E.cs</NewMemberFileName>
+            </TypeIdentifier>
+          </Enum>
+          <Enum Name="LR7_LastOne.MainForm.FormEventArgs.Status" Collapsed="true">
+            <TypeIdentifier>
+              <NewMemberFileName>MainForm_E.cs</NewMemberFileName>
+            </TypeIdentifier>
+          </Enum>
+        </NestedTypes>
+        <TypeIdentifier>
+          <NewMemberFileName>MainForm_E.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="LR7_LastOne.MainForm.HandleDeviceEventsProperties">
+        <TypeIdentifier>
+          <NewMemberFileName>MainForm_E.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>/DoUAwkIgSaAQBYWhACAVAMHchAhgGFhIYtnAwZHiGE=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LR7_LastOne.FileReader">
+    <Position X="24.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sourse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LR7_LastOne.DeviceEventArgs">
+    <Position X="26.5" Y="2.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="LR7_LastOne.DeviceEventArgs.CritErrorType">
+        <TypeIdentifier>
+          <NewMemberFileName>Sourse.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="LR7_LastOne.DeviceEventArgs.ErrorType">
+        <TypeIdentifier>
+          <NewMemberFileName>Sourse.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="LR7_LastOne.DeviceEventArgs.PropertyType">
+        <TypeIdentifier>
+          <NewMemberFileName>Sourse.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAEAIEAAAAAAAAAAAAAAAAAAAAAACE=</HashCode>
+      <FileName>Sourse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="LR7_LastOne.IDevice">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAgAAAAAAQAABAAAAAAAAABAAAAAAAAASACAAAAAAAA=</HashCode>
+      <FileName>Interfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LR7_LastOne.IPrinter">
+    <Position X="15.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAA=</HashCode>
+      <FileName>Interfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LR7_LastOne.IScanner">
+    <Position X="18" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LR7_LastOne.I_MFP">
+    <Position X="17" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="LR7_LastOne.HandleWriter">
+    <Position X="5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Device_hierarchy.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="LR7_LastOne.DeviceHandler">
+    <Position X="3" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Device_hierarchy.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

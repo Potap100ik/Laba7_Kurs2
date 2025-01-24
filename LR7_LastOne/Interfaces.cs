@@ -16,14 +16,12 @@ namespace LR7_LastOne
         void Assemble();
         void DisassambleSam();
         void Disassamble_shop();
-
-
     } 
     interface IPrinter: IDevice
     {
         int Papercount { get; }
-       void Print(int paper_used);
-        void PaperAdd(int paper);
+       void Print(int paper_used = 1);
+        void PaperAdd(int paper = 1);
     }
     interface IScanner: IDevice
     {
@@ -31,6 +29,6 @@ namespace LR7_LastOne
     }
     interface I_MFP: IScanner, IPrinter
     {
-        void Copy();
+        void Copy(int paper_used = 1);
     }
 }
